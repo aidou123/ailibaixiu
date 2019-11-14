@@ -29,7 +29,7 @@
         <strong>错误！</strong>发生XXX错误
       </div> -->
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4" id="modifyBox">
           <form id="userForm">
             <h2>添加新用户</h2>
             <div class="form-group">
@@ -37,9 +37,10 @@
               <div class="form-group">
                 <label class="form-image">
                   <input id="avatar" type="file">
-                  <img src="../assets/img/default.png">
+                  <img src="../assets/img/default.png" id="preview">
                   <i class="mask fa fa-upload"></i>
                 </label>
+                <input type="hidden" name="avatar" id="hiddenAvatar">
               </div>
             </div>
             <div class="form-group">
