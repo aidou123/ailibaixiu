@@ -38,3 +38,15 @@ $('#modifyBox').on('change','#avatar',function () {
     });
 
 })
+//向服务器发送请求获取用户数据
+$.ajax({
+    type: "get",
+    url: "/users",
+    success: function (response) {
+        // console.log(response)
+      let html =  template('userTpl',{
+            data:response
+        });
+        $('#userBox').html(html)
+    }
+});
