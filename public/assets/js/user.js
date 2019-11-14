@@ -50,3 +50,32 @@ $.ajax({
         $('#userBox').html(html)
     }
 });
+//修改用户
+$('#userBox').on('click','.edit',function () {
+    let id = $(this).attr('data-id');
+    $.ajax({
+        type: "get",
+        url: `/users/${id}`,
+        success: function (response) {
+            // console.log(response)
+            let html = template('modifyTpl',response)
+            $('#modifyBox').html(html)
+        }
+    });
+})
+//为修改表单添加表单提交事件
+$('#modifyBox').on('submit','#modifyForm',function () {
+    let modifyData = $(this).serialize();
+    let id = $(this).attr('data-id')
+    // console.log(formData)
+    $.ajax({
+        type:'put',
+        url:`/users/${id}`,
+        data:modifyData,
+        success: function (response) {
+            location.reload()
+        }
+
+    })
+    return false
+})
