@@ -138,6 +138,7 @@ deleteMany.on('click',function () {
     //遍历选中用户获取他们的id加入数组ids中
     checkedUser.each(function (index,element) {
         ids.push($(element).attr('data-id'))
+        // element.data.id 原生获取ID方法
     });
     
     if(confirm('你确定要执行批量删除操作吗？')) {
