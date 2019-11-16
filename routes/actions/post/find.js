@@ -22,7 +22,7 @@ module.exports = async (req, res) => {
 	}
 	console.log(condition)
 	// 查询用户信息
-	const posts = await pagination(Post).page(page).size(10).display(5).find(condition).populate('author', '-password').populate('category').select('-content -meta').exec();
+	const posts = await pagination(Post).page(page).size(2).display(5).find(condition).populate('author', '-password').populate('category').select('-content -meta').exec();
 	// 响应
 	res.send(posts);
 }

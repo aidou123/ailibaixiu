@@ -36,7 +36,7 @@ $('#addForm').on('submit',function () {
         url: "/posts",
         data: formData,
         success: function () {
-            location.assign = '/admin/posts.html'
+            location.href = '/admin/posts.html'
         }
     });
 })
