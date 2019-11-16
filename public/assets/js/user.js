@@ -79,3 +79,16 @@ $('#modifyBox').on('submit','#modifyForm',function () {
     })
     return false
 })
+//删除用户
+$('#userBox').on('click','.delete',function () {
+    if(confirm('你确定要删除吗？')) {
+        let id = $(this).attr('data-id');
+        $.ajax({
+            type:'delete',
+            url:`/users/${id}`,
+            success:function () {
+                location.reload()
+            }
+        })
+    }
+})
