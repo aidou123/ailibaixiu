@@ -92,3 +92,61 @@ $('#userBox').on('click','.delete',function () {
         })
     }
 })
+//全选按钮
+let selectAll = $('.selectAll');
+//批量删除按钮
+let deleteMany = $('#deleteMany')
+
+selectAll.on('change',function () {
+    //全选按钮状态
+    let status = $(this).prop('checked')
+
+    if(status) {
+        //显示批量删除按钮
+        deleteMany.show()
+    } else {
+        //隐藏批量删除按钮
+        deleteMany.hide()
+    }
+
+    //获取所有用户状态和全选按钮保持一致
+    $('#userBox').find('input').prop('checked',status)
+})
+//当用户前面复选框发生改变时
+$('#userBox').on('change','.userStatus',function () {
+    //获取所有用户
+    let inputs = $('#userBox').find('input')
+    // 判断所有用户数量和被选中用户数量一致
+    if(inputs.length == inputs.filter(':checked').length) {
+        selectAll.prop('checked',true)
+    } else {
+        selectAll.prop('checked',false)
+
+    }
+
+    if(inputs.filter(':checked').length > 0) {
+        deleteMany.show()
+    } else {
+        deleteMany.hide()
+    }
+})
+//批量删除按钮点击事件
+deleteMany.on('click',function () {
+    let ids = [];
+    //获取选中用户
+    let checkedUser = $('#userBox').find('input').filter(':checked');
+    //遍历选中用户获取他们的id加入数组ids中
+    checkedUser.each(function (index,element) {
+        ids.push($(element).attr('data-id'))
+    });
+    
+    if(confirm('你确定要执行批量删除操作吗？')) {
+        $.ajax({
+            type: 'delete',
+            url: `/users/${ids.join('-')}`,
+            success: function () {
+                location.reload()
+            }
+        });
+    }
+})
