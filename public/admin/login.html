@@ -46,6 +46,7 @@
            password
          },
          success: function (response) {
+          localStorage.setItem('user',JSON.stringify(response))
            location.assign('index.html')
          },
          error: function () {

@@ -54,7 +54,7 @@
           </tr>
         </thead>
         <tbody id="postsBox">
-          
+     
         </tbody>
       </table>
     </div>
@@ -95,8 +95,33 @@
         </ul>
       </li>
     </ul>
-  </div>
+  </div> 
 
+       <!-- 模态框 -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="exampleModalLabel">发布评论</h4>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="message-text" class="control-label">Message:</label>
+                <textarea class="form-control" id="message-text"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="button" class="btn btn-primary addCom">发布</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
   <script src="../assets/vendors/jquery/jquery.js"></script>
   <script src="../assets/vendors/bootstrap/js/bootstrap.js"></script>
   <script src="../assets/vendors/art-template/template-web.js"></script>
@@ -112,6 +137,7 @@
       <td class="text-center">
         <a href="post-add.html?id={{$value._id}}" class="btn btn-default btn-xs">编辑</a>
         <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
+        <a href="javascript:;" id='myModal' class="btn btn-success btn-xs postCom" data-id="{{$value._id}}">发表评论</a>
       </td>
     </tr>
     {{/each}}
@@ -135,6 +161,7 @@
     {{/each}}
   </script>
   <script src="../assets/js/posts.js"></script>
+  <script src="../assets/js/common.js"></script>
   <script>NProgress.done()</script>
 </body>
 </html>

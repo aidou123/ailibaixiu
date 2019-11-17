@@ -73,4 +73,16 @@ function getUrlParam(name) {
    }
     return -1
 }
-
+// 修改文章表单提交行为
+$('#parentBox').on('submit','#modifyForm',function () {
+    let id= $(this).attr('data-id')
+    let formData = $(this).serialize();
+    $.ajax({
+        type: "put",
+        url: `/posts/${id}`,
+        data: formData,
+        success: function () {
+            location.href = '/admin/posts.html';
+        }
+    });
+})

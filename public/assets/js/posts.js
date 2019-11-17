@@ -9,11 +9,7 @@ $.ajax({
         $('#pageBox').html(page)
     }
 });
-// 处理日期时间格式
-function formateDate(date) {
-    date = new Date();
-    return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
-}
+
 //处理分页页码
 function changePage(page) {
     $.ajax({
@@ -59,3 +55,35 @@ $('#filterForm').on('submit',function () {
     });
     return false;
 })
+
+  // 模态框
+$(function () {
+    var id, userId;
+    $('#postsBox').on('click', ".postCom", function () {
+        id = $(this).data('id')
+        console.log(id, 678);
+        userId = JSON.parse(localStorage.getItem('user'))._id
+        console.log(userId, 444);
+        $('#exampleModal').modal('show')
+    })
+
+    /* 点击发布 */
+    $('.addCom').on('click', function () {
+        var content = $('#message-text').val()
+        // console.log(content, 1111);
+        $.ajax({
+            type: 'post',
+            url: '/comments',
+            data: {
+                author: userId,
+                content: content,
+                post: id
+            },
+            success: function (res) {
+                console.log(res, 543);
+                $('#exampleModal').modal('hide')
+            }
+        })
+    })
+})
+
