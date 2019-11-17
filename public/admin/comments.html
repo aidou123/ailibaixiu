@@ -103,12 +103,15 @@
     {{/each}}
   </script>
   <script type="text/html" id="pageTpl">
-    
-    <li><a href="#">上一页</a></li>
+    {{if page > 1}}
+    <li><a href="#" onclick="changePage({{page - 1}})">上一页</a></li>
+    {{/if}}
     {{each display}}
-    <li><a href="#">{{page}}</a></li>
+    <li><a href="#" onclick="changePage({{$value}})">{{$value}}</a></li>
     {{/each}}
-    <li><a href="#">下一页</a></li>
+    {{if page < pages}}
+    <li><a href="#" onclick="changePage({{page + 1}})">下一页</a></li>
+    {{/if}}
   </script>
   <script src="../assets/js/comments.js"></script>
   <script src="../assets/js/common.js"></script>

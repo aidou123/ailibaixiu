@@ -11,18 +11,30 @@ $.ajax({
 //分页功能
 $.ajax({
     type: "get",
-    url: "/posts/",
-    data: {
-        page: page
-    },
+    url: "/comments",
     success: function (response) {
         console.log(response);
-        let html = template('commentsTpl',response);
-        $('#commentsBox').html(html)
         let pageHtml = template('pageTpl',response);
-        // $('#pageBox').html(pageHtml)
+        $('#pageBox').html(pageHtml)
     }
 });
+//实现分页
+function changePage(page) {
+    $.ajax({
+        type: "get",
+        url: "/comments",
+        data:{
+            page:page
+        },
+        success: function (response) {
+            // console.log(response);
+            let html = template('commentsTpl',response);
+            $('#commentsBox').html(html)
+            let pageHtml = template('pageTpl',response);
+            $('#pageBox').html(pageHtml)
+        }
+    });
+}
 // 评论状态
 $('#commentsBox').on('click','.status',function () {
     let state = $(this).attr('data-state');

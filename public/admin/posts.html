@@ -148,7 +148,7 @@
     <li><a href="javascript:;" onclick="changePage({{page - 1}})">上一页</a></li>
     {{/if}}
     {{each display}}
-    <li><a href="javascript:;">{{$value}}</a></li>
+    <li><a href="javascript:;" onclick="changePage({{$value}})">{{$value}}</a></li>
     {{/each}}
     {{if page < pages}}
     <li><a href="javascript:;" onclick="changePage({{page + 1}})">下一页</a></li>
