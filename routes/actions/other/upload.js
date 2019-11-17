@@ -2,7 +2,6 @@ module.exports = async (req, res) => {
 	// 建立结果数组
 	let imgsPath = [];
 	// 如果用户上传了文件
-	// console.log(req.files)
 	if (req.files) {
 		// 循环结果对象
 		for (let attr in req.files) {

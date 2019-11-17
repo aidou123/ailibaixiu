@@ -40,3 +40,37 @@ $('#addForm').on('submit',function () {
         }
     });
 })
+
+ let id = getUrlParam('id')
+if(id != -1) {
+    $.ajax({
+        type: "get",
+        url: `/posts/${id}`,
+        success: function (response) {
+            $.ajax({
+                type: "get",
+                url: "/categories/",
+                success: function (categories) {
+                    // console.log(categories)
+                     response.categories = categories
+                    let html = template('modifyTpl',response);
+                    // console.log(response)
+                    $('#parentBox').html(html)
+                }
+            });
+        }
+    });
+}
+
+// 从浏览器地址栏中查询参数
+function getUrlParam(name) {
+   let paramAry = location.search.substr(1).split('&')
+   for (let i = 0; i < paramAry.length; i++) {
+    let tmp = paramAry[i].split('=')
+    if(tmp[0] == name) {
+        return tmp[1]
+    }
+   }
+    return -1
+}
+
